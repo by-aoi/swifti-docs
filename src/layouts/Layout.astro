@@ -1,0 +1,53 @@
+---
+import Navbar from "../components/navbar/index.astro";
+import Footer from "../components/footer/index.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="relative min-h-screen mb-36 sm:mb-32 md:mb-24 bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
+  >
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>
+
+<script>
+  import type { Theme } from "../components/navbar/toggle-theme";
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches }) => {
+      if (matches) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    });
+
+  const theme = localStorage.getItem("theme") as Theme | undefined;
+  if (theme && theme !== "auto") {
+    if (theme === "dark") document.documentElement.classList.add("dark");
+  } else {
+    const { matches: darkTheme } = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    if (darkTheme) document.documentElement.classList.add("dark");
+  }
+</script>

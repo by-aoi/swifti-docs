@@ -1,0 +1,55 @@
+---
+import SectionLink from "./section-link.astro";
+import CaretRightIcon from "../icons/caret-right.astro";
+import SectionTitle from "./section-title.astro";
+---
+
+<aside
+  id="aside"
+  class="h-aside fixed md:sticky top-16 bg-zinc-50 dark:bg-zinc-950 group z-40 max-md:-left-full max-md:transition-[left] data-[open=true]:left-0 max-md:border-r max-md:border-zinc-200 dark:border-zinc-800"
+>
+  <button
+    id="aside-btn"
+    class="fixed left-0 top-16 md:hidden font-medium text-sm bg-zinc-50 dark:bg-zinc-950 w-full border-b border-zinc-200 dark:border-zinc-800 px-4 py-4"
+  >
+    <div
+      class="transition-[margin-left] group-data-[open=true]:ml-52 flex items-center gap-1"
+    >
+      <span class="text-base"><CaretRightIcon /></span>
+      Menu
+    </div>
+  </button>
+  <ul
+    class="flex bg-zinc-50 dark:bg-zinc-950 flex-col gap-2 px-4 py-6 overflow-y-auto h-aside w-52 relative"
+  >
+    <SectionTitle>Start Here</SectionTitle>
+    <SectionLink href="/docs">Getting Started</SectionLink>
+    <SectionLink href="/docs/installation">Installation</SectionLink>
+    <SectionTitle>Basics</SectionTitle>
+    <SectionLink href="/docs/project-structure">Project Structure</SectionLink>
+    <SectionTitle>Guides</SectionTitle>
+    <SectionLink href="/docs/build-and-deploy">Build & Deploy</SectionLink>
+    <SectionTitle>API Reference</SectionTitle>
+    <SectionLink href="/docs/routes">Routes</SectionLink>
+    <SectionLink href="/docs/middlewares">Middlewares</SectionLink>
+    <SectionLink href="/docs/context">Context</SectionLink>
+    <SectionLink href="/docs/request">Request</SectionLink>
+    <SectionLink href="/docs/response">Response</SectionLink>
+    <SectionLink href="/docs/cookies">Cookies</SectionLink>
+    <SectionTitle>Configuration</SectionTitle>
+    <SectionLink href="/docs/configuration-file">
+      Configuration File
+    </SectionLink>
+  </ul>
+</aside>
+
+<script>
+  const aside = document.getElementById("aside");
+  const button = document.getElementById("aside-btn");
+  if (button && aside) {
+    button.addEventListener("click", () => {
+      const isOpen = JSON.parse(aside.dataset.open ?? "false");
+      aside.dataset.open = (!isOpen).toString();
+    });
+  }
+</script>

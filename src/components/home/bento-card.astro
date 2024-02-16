@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string;
+  color?: "primary" | "secondary" | "tertiary";
+  position?: "left" | "right";
+}
+
+const { class: className, color = "primary", position = "right" } = Astro.props;
+---
+
+<article
+  class={[
+    "flex flex-col bg-zinc-200/30 dark:bg-zinc-900/40 gap-4 border border-zinc-200 dark:border-zinc-800 rounded p-4 overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 after:-z-10 before:-z-10 after:absolute after:content-[''] after:-left-4 after:-bottom-4 after:blur-xl after:rounded-xl after:w-24 after:aspect-square after:opacity-20 before:absolute before:content-[''] before:-right-4 before:-top-4 before:blur-xl before:rounded-xl before:w-24 before:aspect-square before:opacity-20",
+    color === "primary"
+      ? "before:bg-amber-300 after:bg-amber-300"
+      : color === "secondary"
+        ? "before:bg-emerald-300 after:bg-emerald-300"
+        : "before:bg-violet-300 after:bg-violet-300",
+    position === "left" ? "before:hidden" : "after:hidden",
+    className ?? "",
+  ].join(" ")}
+>
+  <h3 class="text-xl font-medium flex items-center gap-4">
+    <span
+      class={`border border-zinc-200 dark:border-zinc-800 ${color === "primary" ? "text-amber-500" : color === "secondary" ? "text-emerald-500" : "text-violet-500"} aspect-square rounded w-8 grid place-items-center`}
+      ><slot name="icon" /></span
+    >
+    <slot name="title" />
+  </h3>
+  <slot />
+</article>

@@ -1,0 +1,91 @@
+---
+import NavbarLink from "./link.astro";
+import SocialIcon from "./social-icon.astro";
+import ToggleTheme from "./toggle-theme.tsx";
+import DiscordIcon from "../icons/discord.astro";
+import MenuIcon from "../icons/menu.astro";
+import GithubIcon from "../icons/github.astro";
+import { GithubLink, DiscordLink } from "../../lib/consts";
+---
+
+<style is:global>
+  #swifti-dark-logo {
+    display: none;
+  }
+
+  .dark #swifti-light-logo {
+    display: none;
+  }
+
+  .dark #swifti-dark-logo {
+    display: block;
+  }
+</style>
+
+<header
+  class="sticky group top-0 left-0 w-full h-16 border-b border-b-zinc-200 dark:border-zinc-800 z-50 bg-zinc-50 dark:bg-zinc-950"
+  id="navbar"
+>
+  <nav
+    class="flex items-center justify-between h-full gap-4 mx-auto max-w-4xl px-4"
+  >
+    <a href="/">
+      <img
+        class="w-28"
+        id="swifti-light-logo"
+        src="/swifti-light.png"
+        alt="swifti logo"
+      />
+      <img
+        class="w-28"
+        id="swifti-dark-logo"
+        src="/swifti-dark.png"
+        alt="swifti logo"
+      />
+    </a>
+    <button class="text-2xl sm:hidden" id="navbar-btn">
+      <MenuIcon />
+    </button>
+    <div
+      class="flex-1 h-full max-sm:overflow-hidden max-sm:max-h-0 max-sm:transition-[max-height] group-data-[open=true]:max-sm:max-h-40 max-sm:w-full max-sm:fixed max-sm:left-0 max-sm:top-16 max-sm:bg-zinc-50 max-sm:dark:bg-zinc-950"
+    >
+      <menu
+        class="flex justify-between items-center gap-4 h-full max-sm:p-4 max-sm:flex-col max-sm:items-start max-sm:border-b max-sm:border-b-zinc-200 dark:border-zinc-800"
+      >
+        <ul
+          class="flex items-center gap-4 sm:h-full max-sm:items-start max-sm:flex-col"
+        >
+          <NavbarLink href="/">Home</NavbarLink>
+          <NavbarLink href="/docs">Documentation</NavbarLink>
+        </ul>
+        <ul
+          class="flex items-center gap-4 sm:h-full max-sm:justify-between max-sm:w-full"
+        >
+          <ul class="flex items-center gap-4">
+            <SocialIcon href={DiscordLink}>
+              <DiscordIcon />
+            </SocialIcon>
+            <SocialIcon href={GithubLink}>
+              <GithubIcon />
+            </SocialIcon>
+          </ul>
+          <span
+            class="block bg-zinc-300 dark:bg-zinc-600 w-[.05rem] h-4 max-sm:hidden"
+          ></span>
+          <ToggleTheme client:only />
+        </ul>
+      </menu>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const button = document.getElementById("navbar-btn");
+  if (button && navbar) {
+    button.addEventListener("click", () => {
+      const isOpen = JSON.parse(navbar.dataset.open ?? "false");
+      navbar.dataset.open = (!isOpen).toString();
+    });
+  }
+</script>

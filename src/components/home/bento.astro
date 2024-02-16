@@ -1,0 +1,96 @@
+---
+import { DiscordLink, GithubLink } from "../../lib/consts";
+import DiscordIcon from "../icons/discord.astro";
+import GithubIcon from "../icons/github.astro";
+import BentoCard from "./bento-card.astro";
+---
+
+<section class="grid grid-cols-12 gap-4 max-sm:grid-cols-1">
+  <BentoCard class="sm:col-span-7" color="secondary" position="left">
+    <svg
+      slot="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+      ><path
+        fill="currentColor"
+        fill-rule="evenodd"
+        d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14"
+      ></path></svg
+    >
+    <span slot="title">What is Swifti?</span>
+    Swifti is a directory-based web framework, offering a simple and friendly work
+    environment, in addition to excellent performance.
+  </BentoCard>
+  <BentoCard class="sm:col-span-5">
+    <svg
+      slot="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      ><path
+        fill="currentColor"
+        d="M4 2h16a2 2 0 0 1 2 2v12c0 1.11-.89 2-2 2h-4l-4 4l-4-4H4a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2m0 2v12h4.83L12 19.17L15.17 16H20V4zm11.84 4.2l-1.01 1.01l-2.07-2.03l1.01-1.02c.2-.21.54-.22.78 0l1.29 1.25c.21.21.22.55 0 .79M8 11.91l4.17-4.19l2.07 2.08l-4.16 4.2H8z"
+      ></path></svg
+    >
+    <span slot="title">Easy initialization</span>
+    Start using Swifti with the automatic installation tool:
+    <code class="block text-sm opacity-50"
+      ><span class="text-zinc-500">></span> npm create swifti@latest</code
+    >
+  </BentoCard>
+  <BentoCard color="tertiary" class="sm:col-span-6">
+    <svg
+      slot="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 256 256"
+      ><path
+        fill="currentColor"
+        d="M234.15 49.59A12 12 0 0 0 224 44H32a12 12 0 0 0-8.11 20.85L63 100.71l-39.82 43.15A12 12 0 0 0 32 164h127.28l-26.11 54.84a12 12 0 1 0 21.66 10.32l80-168a12 12 0 0 0-.68-11.57M170.71 140H59.41l29.41-31.86a12 12 0 0 0-.71-17L62.85 68H205Z"
+      ></path></svg
+    >
+    <span slot="title">Minimalist</span>
+    Swifti fulfills its purpose using the least amount of needs, without sacrificing
+    the final result.
+  </BentoCard>
+  <BentoCard position="left" color="secondary" class="sm:col-span-6">
+    <svg
+      slot="icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      ><g
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        ><path d="M18 21a8 8 0 0 0-16 0"></path><circle cx="10" cy="8" r="5"
+        ></circle><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"></path></g
+      ></svg
+    >
+    <span slot="title">Community</span>
+    Swifties are open source, so feel free to collaborate.
+    <div class="flex items-center gap-4">
+      <a
+        class="flex items-center gap-2 opacity-70 hover:opacity-85 transition-opacity"
+        href={DiscordLink}
+      >
+        <DiscordIcon />
+        Discord
+      </a>
+      <a
+        class="flex items-center gap-2 opacity-50 hover:opacity-75 transition-opacity"
+        href={GithubLink}
+      >
+        <GithubIcon />
+        Github
+      </a>
+    </div>
+  </BentoCard>
+</section>

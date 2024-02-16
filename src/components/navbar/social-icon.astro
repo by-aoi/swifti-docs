@@ -1,0 +1,13 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<li class="text-xl">
+  <a href={href} target="_blank">
+    <slot />
+  </a>
+</li>

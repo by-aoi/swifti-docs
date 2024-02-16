@@ -1,0 +1,79 @@
+---
+import Layout from "./Layout.astro";
+import Aside from "../components/aside/index.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <section class="relative flex max-w-4xl mx-auto">
+    <Aside />
+    <div class="w-full content px-4 flex flex-col gap-4 py-6 max-md:pt-20">
+      <slot />
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .content h1 {
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
+
+  .content h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .content h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .content a {
+    transition: opacity 0.2s;
+    color: #f59e0b;
+  }
+
+  .content a:hover {
+    opacity: 0.75;
+  }
+
+  .content li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .content li::before {
+    content: "";
+    border-radius: 50%;
+    width: 0.35rem;
+    height: 0.35rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+  }
+
+  .dark .content li::before {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .content p code {
+    background-color: #f4f4f5;
+    border: solid 0.1rem #e4e4e7;
+    border-radius: 0.25rem;
+    padding: 0.1rem 0.25rem;
+    font-size: 0.925rem;
+  }
+
+  .dark .content p code {
+    background-color: #18181b;
+    border-color: #27272a;
+  }
+
+  .content pre {
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+</style>
