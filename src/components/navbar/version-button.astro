@@ -40,7 +40,7 @@ const { version } = Astro.props;
 <script>
   const button = document.getElementById("versions-button");
   const ctn = document.getElementById("versions-ctn");
-  if (button && navbar) {
+  if (button && ctn) {
     button.addEventListener("click", () => {
       const isOpen = JSON.parse(ctn.dataset.open ?? "false");
       ctn.dataset.open = (!isOpen).toString();
