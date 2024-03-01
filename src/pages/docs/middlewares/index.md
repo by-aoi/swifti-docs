@@ -16,12 +16,30 @@ const middleware = new Middleware((ctx, next) => {
 });
 ```
 
-To use it, pass the middleware in the use method of the route constructor:
+To use the middleware you must export it from the `middlewares.ts` or `middlewares.js` file in the root directory of the path where it will be used:
 
 ```ts
-import { Route } from "swifti";
+import { Middleware } from "swifti";
 
-const route = new Route();
+const middleware = new Middleware((ctx, next) => {
+  // your code
+  next();
+});
 
-route.use(middleware, middleware2, middleware3 /* ... */);
+export default [middleware];
+```
+
+Note: the middlewares are nested according to the directories, that is, if you define a middleware in the `users` directory it will also be used in the `users/me` directory, to avoid this use the `matcher` option:
+
+```ts
+import { Middleware } from "swifti";
+
+const middleware = new Middleware(
+  (ctx, next) => {
+    next();
+  },
+  {
+    matcher: ["/users"], // (string | RegExp | MatcherFunction)[]
+  }
+);
 ```

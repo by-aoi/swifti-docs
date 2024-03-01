@@ -1,6 +1,7 @@
 ---
-layout: ../../../layouts/Docs-layout.astro
+layout: ../../../../layouts/Docs-layout.astro
 title: Project Structure - Swifti Docs
+version: v0.1.0
 ---
 
 # Project Structure
@@ -22,29 +23,31 @@ The route files must be called route.ts or route.js, where you must export the m
 ```ts
 import { Route } from "swifti";
 
-export const OPTIONS: Route = (ctx) => {
-  ctx.response.send("Hello from swifti!");
-};
+const route = new Route();
 
-export const GET: Route = (ctx) => {
+export const OPTIONS = route.handle((ctx) => {
   ctx.response.send("Hello from swifti!");
-};
+});
 
-export const POST: Route = (ctx) => {
+export const GET = route.handle((ctx) => {
   ctx.response.send("Hello from swifti!");
-};
+});
 
-export const PATCH: Route = (ctx) => {
+export const POST = route.handle((ctx) => {
   ctx.response.send("Hello from swifti!");
-};
+});
 
-export const PUT: Route = (ctx) => {
+export const PATCH = route.handle((ctx) => {
   ctx.response.send("Hello from swifti!");
-};
+});
 
-export const DELETE: Route = (ctx) => {
+export const PUT = route.handle((ctx) => {
   ctx.response.send("Hello from swifti!");
-};
+});
+
+export const DELETE = route.handle((ctx) => {
+  ctx.response.send("Hello from swifti!");
+});
 ```
 
 ### 2. Static Route
@@ -57,9 +60,11 @@ Static routes are defined by creating within the routes directory, a new directo
 
 import { Route } from "swifti";
 
-export const GET: Route = (ctx) => {
+const route = new Route();
+
+export const GET = route.handle((ctx) => {
   ctx.response.send("Pong!");
-};
+});
 ```
 
 ### 3. Params Route
@@ -72,9 +77,11 @@ If you need a path with a value passed in the params, create a directory where t
 
 import { Route } from "swifti";
 
-export const GET: Route = (ctx) => {
+const route = new Route();
+
+export const GET = route.handle((ctx) => {
   ctx.response.send(`User ID: ${ctx.req.params.id}`);
-};
+});
 ```
 
 ### 4. Dinamic Route
@@ -87,7 +94,9 @@ If you need a route where the internal routes are dynamic, you can create a dire
 
 import { Route } from "swifti";
 
-export const GET: Route = (ctx) => {
+const route = new Route();
+
+export const GET = route.handle((ctx) => {
   ctx.response.send("Hello from dinamic route.");
-};
+});
 ```

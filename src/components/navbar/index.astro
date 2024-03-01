@@ -1,11 +1,20 @@
 ---
 import NavbarLink from "./link.astro";
 import SocialIcon from "./social-icon.astro";
+import VersionButton from "./version-button.astro";
 import ToggleTheme from "./toggle-theme.tsx";
 import DiscordIcon from "../icons/discord.astro";
 import MenuIcon from "../icons/menu.astro";
 import GithubIcon from "../icons/github.astro";
 import { GithubLink, DiscordLink } from "../../lib/consts";
+
+interface Props {
+  version?: string;
+}
+
+import { currentVersion } from "../../lib/consts";
+
+const { version } = Astro.props;
 ---
 
 <style is:global>
@@ -29,20 +38,23 @@ import { GithubLink, DiscordLink } from "../../lib/consts";
   <nav
     class="flex items-center justify-between h-full gap-4 mx-auto max-w-4xl px-4"
   >
-    <a href="/">
-      <img
-        class="w-28"
-        id="swifti-light-logo"
-        src="/swifti-light.png"
-        alt="swifti logo"
-      />
-      <img
-        class="w-28"
-        id="swifti-dark-logo"
-        src="/swifti-dark.png"
-        alt="swifti logo"
-      />
-    </a>
+    <div class="flex items-center gap-2">
+      <a href="/">
+        <img
+          class="w-28"
+          id="swifti-light-logo"
+          src="/swifti-light.png"
+          alt="swifti logo"
+        />
+        <img
+          class="w-28"
+          id="swifti-dark-logo"
+          src="/swifti-dark.png"
+          alt="swifti logo"
+        />
+      </a>
+      <VersionButton version={version ?? currentVersion} />
+    </div>
     <button class="text-2xl sm:hidden" id="navbar-btn">
       <MenuIcon />
     </button>

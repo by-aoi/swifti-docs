@@ -1,0 +1,49 @@
+---
+import CaretDown from "../icons/caret-down.astro";
+
+import { versions } from "../../lib/consts";
+
+interface Props {
+  version: string;
+}
+
+const { version } = Astro.props;
+---
+
+<div class="relative group" id="versions-ctn">
+  <button
+    id="versions-button"
+    class="flex items-center gap-0.5 text-sm bg-zinc-200 hover:bg-zinc-300 transition-[background-color] dark:bg-zinc-800 hover:dark:bg-zinc-700 rounded-xl pl-1.5 pr-2.5 py-1"
+  >
+    <span class="text-sm text-amber-500"><CaretDown /></span>
+    {version}
+  </button>
+
+  <menu
+    class="bg-zinc-200 dark:bg-zinc-800 hidden flex-col absolute mt-2 w-full rounded group-data-[open=true]:flex"
+  >
+    {
+      versions
+        .filter((v) => v.version !== version)
+        .map((ver) => (
+          <a
+            class="flex-1 py-1 px-2 block transition-[color] hover:text-amber-500"
+            href={ver.href}
+          >
+            {ver.version}
+          </a>
+        ))
+    }
+  </menu>
+</div>
+
+<script>
+  const button = document.getElementById("versions-button");
+  const ctn = document.getElementById("versions-ctn");
+  if (button && navbar) {
+    button.addEventListener("click", () => {
+      const isOpen = JSON.parse(ctn.dataset.open ?? "false");
+      ctn.dataset.open = (!isOpen).toString();
+    });
+  }
+</script>

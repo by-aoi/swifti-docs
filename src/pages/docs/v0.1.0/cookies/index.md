@@ -1,6 +1,7 @@
 ---
-layout: ../../../layouts/Docs-layout.astro
+layout: ../../../../layouts/Docs-layout.astro
 title: Cookies - Swifti Docs
+version: v0.1.0
 ---
 
 # Cookies
@@ -18,22 +19,6 @@ Retrieves the value of a specific cookie by name.
 Gets an object that contains all the cookies and their associated values.
 
 ### set(name, value, [options])
-
-Sets a cookie with the given name, value, and options.
-
-- name: Name of the cookie.
-- value: Cookie value.
-- options: Additional options for the cookie (optional).
-
-### set({ name, value, options })
-
-Sets a cookie with the given name, value, and options.
-
-- name: Name of the cookie.
-- value: Cookie value.
-- options: Additional options for the cookie (optional).
-
-### set([{ name, value, options }])
 
 Sets a cookie with the given name, value, and options.
 
